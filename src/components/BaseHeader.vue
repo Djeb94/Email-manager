@@ -14,11 +14,6 @@ export default {
   components: {
     MicrosoftLogin,
   },
-  data() {
-    return {
-      showPopup: false
-    };
-  },
 }
 </script>
 
