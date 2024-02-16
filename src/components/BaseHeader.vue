@@ -1,18 +1,16 @@
 <template id="header">
   <nav id="header-nav">
-    <button class="btn btn-primary mr-2">Home</button>
-    <button class="btn btn-primary mr-2">Conversations</button>
-    <button class="btn btn-secondary">Login</button>
+    <router-link to="/" class="btn btn-primary mr-2">Home</router-link>
+    <router-link to="conversations" class="btn btn-primary mr-2">Conversations</router-link>
+    <router-link to="login" class="btn btn-secondary">Login</router-link>
   </nav>
 </template>
 
 <script>
-import MicrosoftLogin from './MicrosoftLogin.vue'
 
 export default {
   name: 'BaseHeader',
   components: {
-    MicrosoftLogin,
   },
 }
 </script>
@@ -31,6 +29,7 @@ export default {
   padding: 0.6rem 1.5rem;
   border-radius: 25px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .btn-primary {
