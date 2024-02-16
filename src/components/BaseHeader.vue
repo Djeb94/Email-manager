@@ -1,18 +1,8 @@
 <template id="header">
   <nav id="header-nav">
     <button class="btn btn-primary mr-2">Home</button>
-    <button class="btn btn-primary mr-2">Send mail</button>
-    <button class="btn btn-primary mr-2">My mails</button>
-    <button class="btn btn-secondary" @click="showLoginPopup">Login</button>
-
-    <div v-if="showPopup" class="login-popup">
-      <div class="popup-content">
-        <span class="close" @click="closePopup">&times;</span>
-        <p>Choisissez votre mode de connexion :</p>
-        <button class="btn btn-secondary" @click="loginWithOption('Google')">Google</button>
-        <button class="btn btn-secondary" @click="loginWithOption('Microsoft')"></button>
-      </div>
-    </div>
+    <button class="btn btn-primary mr-2">Conversations</button>
+    <button class="btn btn-secondary">Login</button>
   </nav>
 </template>
 
@@ -29,19 +19,6 @@ export default {
       showPopup: false
     };
   },
-  methods: {
-    showLoginPopup() {
-      this.showPopup = true;
-      console.log('Clicked on Login button');
-    },
-    closePopup() {
-      this.showPopup = false;
-      console.log('Clicked on close button');
-    },
-    loginWithOption(option) {
-      console.log('Connexion avec', option);
-    }
-  }
 }
 </script>
 
@@ -79,38 +56,5 @@ export default {
 .btn-secondary:hover {
   background-color: #5a6268;
   border-color: #545b62;
-}
-
-
-/* Style pour le popup de connexion */
-.login-popup {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.popup-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-}
-
-.close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-}
-
-.popup-content button {
-  margin-right: 10px;
 }
 </style>
