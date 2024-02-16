@@ -3,21 +3,23 @@
     <button class="btn btn-primary mr-2">Home</button>
     <button class="btn btn-primary mr-2">Send mail</button>
     <button class="btn btn-primary mr-2">My mails</button>
-    <button class="btn btn-secondary">Se connecter</button>
+    <MicrosoftLogin class="btn btn-secondary">Login with Microsoft</MicrosoftLogin>
+    <button class="btn btn-secondary">Login with Google</button>
   </nav>
 </template>
 
 <script>
+import MicrosoftLogin from './MicrosoftLogin.vue';
 
 export default {
   name: 'BaseHeader',
   components: {
-
+    MicrosoftLogin,
   }
 }
 </script>
 
-<style>
+<style scoped>
 #header-nav {
   display: flex;
   justify-content: flex-end;
@@ -51,6 +53,7 @@ export default {
 .btn-secondary {
   background-color: #6c757d;
   border-color: #6c757d;
+  cursor: pointer;
 }
 
 .btn-secondary:hover {

@@ -1,6 +1,6 @@
 <template>
     <div>
-      <button v-if="name===''" @click="signIn">Sign in with Microsoft</button>
+      <p v-if="name===''" @click="signIn">Login with Microsoft</p>
       <p v-else>Welcome, {{ name }}</p>
     </div>
   </template>

@@ -36,7 +36,6 @@ body{
   position: fixed;
   width: 100%;
   top: 0;
-  background-color: green;
   display: flex;
   flex-direction: row;
   margin: 0;
