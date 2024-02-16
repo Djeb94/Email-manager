@@ -3,41 +3,62 @@
     <button class="btn btn-primary mr-2">Home</button>
     <button class="btn btn-primary mr-2">Send mail</button>
     <button class="btn btn-primary mr-2">My mails</button>
-    <MicrosoftLogin class="btn btn-secondary">Login with Microsoft</MicrosoftLogin>
-    <button class="btn btn-secondary">Login with Google</button>
+    <button class="btn btn-secondary" @click="showLoginPopup">Login</button>
+
+    <div v-if="showPopup" class="login-popup">
+      <div class="popup-content">
+        <span class="close" @click="closePopup">&times;</span>
+        <p>Choisissez votre mode de connexion :</p>
+        <button class="btn btn-secondary" @click="loginWithOption('Google')">Google</button>
+        <button class="btn btn-secondary" @click="loginWithOption('Microsoft')"></button>
+      </div>
+    </div>
   </nav>
 </template>
 
 <script>
-import MicrosoftLogin from './MicrosoftLogin.vue';
+import MicrosoftLogin from './MicrosoftLogin.vue'
 
 export default {
   name: 'BaseHeader',
   components: {
     MicrosoftLogin,
+  },
+  data() {
+    return {
+      showPopup: false
+    };
+  },
+  methods: {
+    showLoginPopup() {
+      this.showPopup = true;
+      console.log('Clicked on Login button');
+    },
+    closePopup() {
+      this.showPopup = false;
+      console.log('Clicked on close button');
+    },
+    loginWithOption(option) {
+      console.log('Connexion avec', option);
+    }
   }
 }
 </script>
 
 <style scoped>
-#header-nav {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0.5rem;
+.header-nav {
   background-color: #333;
+  padding: 0.5rem;
 }
 
-#header-nav button {
+/* Style pour les boutons */
+.btn {
   border: none;
-  color: #fff;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
+  color: black;
+  font-size: 1.1rem;
+  padding: 0.6rem 1.5rem;
+  border-radius: 25px;
   cursor: pointer;
-}
-
-#header-nav button:hover {
-  background-color: #555;
 }
 
 .btn-primary {
@@ -51,9 +72,8 @@ export default {
 }
 
 .btn-secondary {
-  background-color: #6c757d;
+  background-color: transparent;
   border-color: #6c757d;
-  cursor: pointer;
 }
 
 .btn-secondary:hover {
@@ -61,7 +81,36 @@ export default {
   border-color: #545b62;
 }
 
-.mr-2 {
-  margin-right: 0.5rem;
+
+/* Style pour le popup de connexion */
+.login-popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.popup-content button {
+  margin-right: 10px;
 }
 </style>
