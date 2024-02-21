@@ -1,18 +1,22 @@
 <template>
   <base-layout>
-    <HomePage/>
+  <HomePage/>
+    <Conversation/>
   </base-layout>
 </template>
 
 <script>
 import HomePage from './pages/HomePage.vue'
 import BaseLayout from './components/BaseLayout.vue'
+import Conversation from './components/ConversationsPage.vue'
+
 
 export default {
   name: 'App',
   components: {
     HomePage,
     BaseLayout,
+    Conversation
   }
 }
 </script>
