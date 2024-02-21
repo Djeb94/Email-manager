@@ -2,15 +2,16 @@
   <nav id="header-nav">
     <router-link to="/" class="btn btn-primary mr-2">Home</router-link>
     <router-link to="conversations" class="btn btn-primary mr-2">Conversations</router-link>
-    <router-link to="login" class="btn btn-secondary">Login</router-link>
+    <microsoft-login></microsoft-login>
   </nav>
 </template>
 
 <script>
-
+import MicrosoftLogin from './MicrosoftLogin.vue'
 export default {
   name: 'BaseHeader',
   components: {
+    MicrosoftLogin
   },
 }
 </script>

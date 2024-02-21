@@ -16,7 +16,7 @@ const logoutRequest = {
 
 const msalInstance = new msal.PublicClientApplication({
   auth: {
-    clientId: "e8137439-4d1d-462d-a85f-f81cfea8f0d8",  //"e8137439-4d1d-462d-a85f-f81cfea8f0d8"
+    clientId: "e8137439-4d1d-462d-a85f-f81cfea8f0d8",
     mainWindowRedirectUri: "/"
   },
   cache: {
@@ -42,3 +42,7 @@ export async function signOutUser () {
   const authResult = await msalInstance.logoutPopup(logoutRequest )
   return authResult
 }
+
+
+
+

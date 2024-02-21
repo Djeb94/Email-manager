@@ -1,9 +1,9 @@
 <template>
     <div>
-      <p v-if="name===''" @click="signIn" class="image-button">
-        <span class="button-text">Login with Microsoft</span>
-      </p>
+      <button v-if="name===''" @click="signIn">Se connecter</button>
+      
       <p v-else>Welcome, {{ name }}</p>
+      
     </div>
   </template>
   
@@ -46,5 +46,8 @@
   
   .button-text {
     display: none;
+  }
+  p{
+    color: black;
   }
   </style>

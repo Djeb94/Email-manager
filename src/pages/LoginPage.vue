@@ -5,7 +5,9 @@
 </template>
 
 <script>
-    import MicrosoftLogin from './MicrosoftLogin.vue';
+    import MicrosoftLogin from '@/components/MicrosoftLogin.vue'
+
+
 
     export default {
         name: 'LoginPage',

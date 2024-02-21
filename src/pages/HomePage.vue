@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>Welcome</h1>
+ 
+    <h1>{{ message }}</h1>
   </div>
 </template>
   
@@ -8,7 +9,13 @@
 
 export default {
   name: "HomePage",
+  data() {
+    return {
+      message: 'Welcome to Email Manager'
+    }
+  }
 }
+
 </script>
 
 <style>
