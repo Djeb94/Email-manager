@@ -1,6 +1,6 @@
 <template>
     <div class="email-container">
-        Container for emails
+        <h1>Container for email</h1>
     </div>
 </template>
 
