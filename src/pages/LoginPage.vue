@@ -1,18 +1,16 @@
 <template>
     <div class="loggin-container">
-        <MicrosoftLogin/>
+        <Login/>
     </div>
 </template>
 
 <script>
-    import MicrosoftLogin from '@/components/MicrosoftLogin.vue'
-
-
+    import Login from '@/components/Login.vue'
 
     export default {
         name: 'LoginPage',
         components: {
-            MicrosoftLogin,
+            Login,
         }
     }
 </script>

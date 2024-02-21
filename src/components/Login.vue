@@ -1,10 +1,9 @@
 <template>
     <div>
-      <button v-if="name===''" @click="signIn">Se connecter</button>
-      
-      <p v-else>Welcome, {{ name }}</p>
-      
-    </div>
+      <button v-if="name===''" @click="signIn">Connexion avec Microsoft</button>
+      <button v-if="name===''" @click="signIn">Connexion avec Google</button>
+            <p v-else>Welcome, {{ name }}</p>
+      </div>
   </template>
   
   <script>

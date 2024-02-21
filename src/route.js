@@ -7,11 +7,12 @@ const routes = [
   { path: '/', component: HomePage },
   { path: '/login', component: LoginPage },
   { path: '/conversations', component: ConversationsPage},
+  
 ];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes
 })
 
 export default router;

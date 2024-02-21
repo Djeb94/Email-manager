@@ -1,15 +1,11 @@
 <template>
   <base-layout>
-
     <RouterView></RouterView>
-
   </base-layout>
 </template>
 
 <script>
 import BaseLayout from './components/BaseLayout.vue'
-
-
 
 export default {
   name: 'App',
