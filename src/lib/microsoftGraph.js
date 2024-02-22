@@ -11,18 +11,7 @@ export const requestedScopes = {
  * List the logout account 
  */
 let uri = "/"
-let i = 0
-for (const route in routeObj.routes.path) {
-  if (i===0){
-    i = 1
-    continue
-  }
-  if (window.location.href.includes(route)){
-    uri = route
-    break
-  }
-}
-
+let port = 8080
 const logoutRequest = {
   mainWindowRedirectUri: uri,
 };

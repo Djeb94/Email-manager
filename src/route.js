@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from './pages/HomePage.vue'
 import IndexPage from './pages/ConversationsIndexPage.vue'
 import ConversationContent from './pages/ConversationsContent.vue'
-import store from './store'
 
 const routes = [
   { path: '/', component: HomePage },
@@ -22,5 +21,4 @@ const router = createRouter({
   routes
 })
 
-const routeObj = {router, routes}
 export default router;
