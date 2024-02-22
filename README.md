@@ -12,5 +12,6 @@ npm run serve
 ```
 
 ### Name
-Nehuuln = Maxime YE
-Timalenmodetryhard = Leelian SERANT
+Nehuuln = Maxime YE  
+Timalenmodetryhard = Leelian SERANT  
+Djeb94 = Gaël DJEBAR
