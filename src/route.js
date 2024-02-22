@@ -15,5 +15,4 @@ const router = createRouter({
   routes
 })
 
-const routeObj = {router, routes}
-export default routeObj;
+export default router;
