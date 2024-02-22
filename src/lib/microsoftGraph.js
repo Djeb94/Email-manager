@@ -1,5 +1,4 @@
 import * as msal from '@azure/msal-browser'
-import routeObj from '../route'
 
 /**
  * List the requested scopes (aka. the requested permissions)
@@ -11,27 +10,14 @@ export const requestedScopes = {
 /**
  * List the logout account 
  */
-let uri = "/"
-let i = 0
-for (const route in routeObj.routes.path) {
-  if (i===0){
-    i = 1
-    continue
-  }
-  if (window.location.href.includes(route)){
-    uri = route
-    break
-  }
-}
-
 const logoutRequest = {
-  mainWindowRedirectUri: uri,
+  mainWindowRedirectUri: "/",
 };
 
 const msalInstance = new msal.PublicClientApplication({
   auth: {
-    clientId: "e8137439-4d1d-462d-a85f-f81cfea8f0d8",
-    mainWindowRedirectUri: uri
+    clientId: "e8137439-4d1d-462d-a85f-f81cfea8f0d8",  //"e8137439-4d1d-462d-a85f-f81cfea8f0d8"
+    mainWindowRedirectUri: "/"
   },
   cache: {
     cacheLocation: "sessionStorage"
