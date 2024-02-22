@@ -1,13 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import LoginPage from './pages/LoginPage.vue';
 import HomePage from './pages/HomePage.vue';
-import ConversationsPage from './pages/ConversationsPage.vue';
+import IndexPage from './pages/ConversationsIndexPage.vue';
+import ShowPage from './pages/ConversationsPage.vue';
 
 const routes = [
   { path: '/', component: HomePage },
-  { path: '/login', component: LoginPage },
-  { path: '/conversations', component: ConversationsPage},
-  
+  {
+    path: '/conversations',
+    component: IndexPage,
+    children: [
+      { path: '', component: IndexPage },
+      { path: ':id', component: ShowPage, props: true }
+    ]
+  }
 ];
 
 const router = createRouter({

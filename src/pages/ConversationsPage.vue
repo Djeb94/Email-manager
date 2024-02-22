@@ -1,10 +1,7 @@
 <template>
-    <div class="email-container">
-        <h1>Container for email</h1>
+    <div>
+      <button @click="$router.go(-1)">Retour</button>
+      <h1>Conversation {{ $route.params.id }}</h1>
+      <p>Test</p>
     </div>
-    
-</template>
-
-<script>
-    
-</script>
+  </template>
