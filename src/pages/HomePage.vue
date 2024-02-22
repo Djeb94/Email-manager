@@ -1,20 +1,25 @@
 <template>
   <div>
-    <h1>{{ message }}</h1>
+    <h1>{{ welcome }}</h1>
+    <p v-if="!isAuthenticated">{{ auth }}</p>
   </div>
 </template>
-  
+
 <script>
+import { mapGetters } from 'vuex'
 
 export default {
   name: "HomePage",
-  data() {
-    return {
-      message: 'Welcome to Email Manager'
+  computed: {
+    ...mapGetters(['isAuthenticated']),
+    welcome() {
+      return 'Welcome to Email Manager'
+    },
+    auth() {
+      return 'Please log in your account to access conversations'
     }
   }
 }
-
 </script>
 
 <style>

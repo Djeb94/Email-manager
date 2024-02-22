@@ -7,6 +7,12 @@ const store = createStore({
   mutations: {
     setUser(state, user) {
       state.user = user
+      state.isAuthenticated = true
+    }
+  },
+  getters: {
+    isAuthenticated(state) {
+      return state.user !== null
     }
   }
 })
