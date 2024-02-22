@@ -24,9 +24,9 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth && !store.state.isAuthenticated) {
-    next('/') // Redirige vers la page d'accueil si l'utilisateur n'est pas authentifié
+    next('/')
   } else {
-    next() // Sinon, autorise l'accès à la route
+    next()
   }
 })
 
