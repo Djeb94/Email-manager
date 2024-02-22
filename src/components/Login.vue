@@ -1,13 +1,12 @@
 <template>
-  <div>
-    <button v-if="name === ''" @click="signIn">Connexion avec Microsoft</button>
-    <button v-if="name === ''" @click="signIn">Connexion avec Google</button>
-    <button v-else @click="signOut">Déconnexion</button>
-    <p v-if="name !== ''">Welcome, {{ name }}</p>
+  <div class="auth-container">
+    <button v-if="name === ''" @click="signIn" class="auth-button microsoft">Connexion avec Microsoft</button>
+    <button v-if="name === ''" @click="signInG" class="auth-button google">Connexion avec Google</button>
+    <button v-else @click="signOut" class="auth-button sign-out">Déconnexion</button>
+    <p v-if="name !== ''" class="welcome-text">Welcome, {{ name }}</p>
   </div>
 </template>
 
-  
 <script>
 import * as microsoftGraph from "../lib/microsoftGraph.js";
 
@@ -41,24 +40,43 @@ export default {
   },
 };
 </script>
-  
+
 <style scoped>
-.image-button {
-  display: inline-block;
+.auth-container {
+  display: flex; /* Utilisation de flexbox */
+  align-items: center; /* Alignement vertical centré */
+}
+
+.auth-button {
+  border: none;
+  color: #ffffff;
+  font-size: 1rem;
   padding: 0.5rem 1rem;
-  background-image: url("../assets/microsoft-logo.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  margin-right: 1rem;
 }
 
-.button-text {
-  display: none;
+.microsoft {
+  background-color: #0078d4; /* Couleur Microsoft */
 }
 
-p {
-  color: black;
+.google {
+  background-color: #4285f4; /* Couleur Google */
+}
+
+.sign-out {
+  background-color: #dc3545; /* Couleur de déconnexion */
+}
+
+.auth-button:hover {
+  opacity: 0.8; /* Légère diminution de l'opacité au survol */
+}
+
+.welcome-text {
+  color: #333333; /* Couleur du texte de bienvenue */
+  margin: 0; /* Annule les marges par défaut */
 }
 </style>

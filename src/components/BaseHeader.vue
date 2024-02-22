@@ -1,14 +1,16 @@
-<template id="header">
-  <nav id="header-nav">
-    <router-link to="/" class="btn btn-primary mr-2">Home</router-link>
-    <router-link to="conversations" class="btn btn-primary mr-2">Conversations</router-link>
-    <Login/>
-  </nav>
+<template>
+  <header class="base-header">
+    <nav class="header-nav">
+      <router-link to="/" class="nav-link">Home</router-link>
+      <router-link to="/conversations" class="nav-link">Conversations</router-link>
+      <Login/>
+    </nav>
+  </header>
 </template>
 
 <script>
 import Login from './Login.vue'
- 
+
 export default {
   name: 'BaseHeader',
   components: {
@@ -18,39 +20,45 @@ export default {
 </script>
 
 <style scoped>
-.header-nav {
-  background-color: #333;
-  padding: 0.5rem;
+.base-header {
+  background-color: #f4f4f4;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
 }
 
-/* Style pour les boutons */
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-link {
+  color: #333333;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #007bff; /* Couleur au survol */
+}
+
 .btn {
   border: none;
-  color: black;
-  font-size: 1.1rem;
-  padding: 0.6rem 1.5rem;
-  border-radius: 25px;
+  color: #ffffff; /* Couleur du texte des boutons */
+  font-size: 1rem;
+  padding: 0.5rem 1rem; /* Espacement intérieur */
+  border-radius: 0.25rem; /* Bord arrondi */
   cursor: pointer;
   text-decoration: none;
+  transition: background-color 0.3s ease; /* Transition pour le changement de couleur de fond */
 }
 
 .btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #007bff; /* Couleur de fond des boutons primaires */
 }
 
 .btn-primary:hover {
-  background-color: #0069d9;
-  border-color: #0062cc;
-}
-
-.btn-secondary {
-  background-color: transparent;
-  border-color: #6c757d;
-}
-
-.btn-secondary:hover {
-  background-color: #5a6268;
-  border-color: #545b62;
+  background-color: #0056b3; /* Couleur au survol */
 }
 </style>
