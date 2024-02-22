@@ -45,7 +45,6 @@ body{
   flex-grow: 1;
 }
 #footer-nav{
-  position: fixed;
   width: 100%;
   bottom: 0;
   background-color: #202020;
