@@ -10,14 +10,25 @@ export const requestedScopes = {
 /**
  * List the logout account 
  */
+let uri = "/"
+let port = 8080
 const logoutRequest = {
-  mainWindowRedirectUri: "/",
+  mainWindowRedirectUri: uri,
 };
+
+export default {
+  mounted() {
+    const route = this.$route;
+    uri = route.path;
+    console.log("Routes path is :", route.path)
+    logoutRequest.mainWindowRedirectUri = `http://localhost:${port}${uri}`;
+  },
+}
 
 const msalInstance = new msal.PublicClientApplication({
   auth: {
-    clientId: "e8137439-4d1d-462d-a85f-f81cfea8f0d8",  //"e8137439-4d1d-462d-a85f-f81cfea8f0d8"
-    mainWindowRedirectUri: "/"
+    clientId: "e8137439-4d1d-462d-a85f-f81cfea8f0d8",
+    mainWindowRedirectUri: uri
   },
   cache: {
     cacheLocation: "sessionStorage"
