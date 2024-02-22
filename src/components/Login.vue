@@ -43,8 +43,8 @@ export default {
 
 <style scoped>
 .auth-container {
-  display: flex; /* Utilisation de flexbox */
-  align-items: center; /* Alignement vertical centré */
+  display: flex;
+  align-items: center;
 }
 
 .auth-button {
@@ -60,23 +60,23 @@ export default {
 }
 
 .microsoft {
-  background-color: #0078d4; /* Couleur Microsoft */
+  background-color: #0078d4;
 }
 
 .google {
-  background-color: #4285f4; /* Couleur Google */
+  background-color: #4285f4;
 }
 
 .sign-out {
-  background-color: #dc3545; /* Couleur de déconnexion */
+  background-color: #dc3545;
 }
 
 .auth-button:hover {
-  opacity: 0.8; /* Légère diminution de l'opacité au survol */
+  opacity: 0.8;
 }
 
 .welcome-text {
-  color: #333333; /* Couleur du texte de bienvenue */
-  margin: 0; /* Annule les marges par défaut */
+  color: #333333;
+  margin: 0;
 }
 </style>
