@@ -2,7 +2,7 @@
   <div>
     <h1>{{ welcome }}</h1>
     <p v-if="!isAuthenticated">{{ auth }}</p>
-    <h1 v-if="!isAuthenticated">{{ message }}</h1>
+    <h1 v-if="!isAuthenticated">{{ welcome }}</h1>
     <div v-else>
       <form action="ConversationsPage.vue" method="post">
         <label for="to">À :</label>
@@ -21,9 +21,7 @@
 </template>
 
 <script>
-import * as microsoftGraph from "../lib/microsoftGraph.js";
-import { mapMutations, mapState } from 'vuex'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 
 export default {
   name: "HomePage",
@@ -36,25 +34,6 @@ export default {
       return 'Please log in your account to access conversations'
     },
     ...mapState(['user'])
-  },
-  methods: {
-    ...mapMutations(['setUser']),
-    async signIn() {
-      try {
-        const user = await microsoftGraph.signInAndGetUser();
-        this.setUser(user.account.name);
-      } catch (error) {
-        console.error(error);
-      }
-    },
-    async signOut() {
-      try {
-        await microsoftGraph.signOutUser();
-        this.setUser(null);
-      } catch (error) {
-        console.error(error);
-      }
-    }
   },
 }
 </script>
