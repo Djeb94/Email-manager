@@ -1,29 +1,27 @@
 <template>
   <div class="auth-container">
-    <button v-if="name === ''" @click="signIn" class="auth-button microsoft">Connexion avec Microsoft</button>
-    <button v-if="name === ''" @click="signInG" class="auth-button google">Connexion avec Google</button>
-    <button v-else @click="signOut" class="auth-button sign-out">Déconnexion</button>
-    <p v-if="name !== ''" class="welcome-text">Welcome, {{ name }}</p>
+    <button v-if="user === null" @click="signIn" class="auth-button microsoft">Sign in with Microsoft</button>
+    <button v-if="user === null" @click="signInG" class="auth-button google">Sign in with Google</button>
+    <button v-else @click="signOut" class="auth-button sign-out">Sign out</button>
+    <p v-if="user !== null" class="welcome-text">Welcome, {{ user }}</p>
   </div>
 </template>
 
 <script>
 import * as microsoftGraph from "../lib/microsoftGraph.js";
+import { mapMutations, mapState } from 'vuex'
 
 export default {
   name: "SigninButton",
-  data() {
-    return {
-      name: ""
-    }
+  computed: {
+    ...mapState(['user'])
   },
   methods: {
+    ...mapMutations(['setUser']),
     async signIn() {
       try {
         const user = await microsoftGraph.signInAndGetUser();
-        this.name = user.account.name
-        console.log(this.name);
-        this.$emit('setUser', this.name);
+        this.setUser(user.account.name);
       } catch (error) {
         console.error(error);
       }
@@ -31,8 +29,7 @@ export default {
     async signOut() {
       try {
         await microsoftGraph.signOutUser();
-        this.name = "";
-        console.log("Utilisateur déconnecté.");
+        this.setUser(null);
       } catch (error) {
         console.error(error);
       }
