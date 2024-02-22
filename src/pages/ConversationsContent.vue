@@ -8,6 +8,7 @@
   
   <script>
   export default {
+    name: "ConversationContent",
     data() {
       return {
         conversations: [
