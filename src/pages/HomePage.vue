@@ -2,7 +2,7 @@
   <div>
     <h1>{{ welcome }}</h1>
     <p v-if="!isAuthenticated">{{ auth }}</p>
-    <h1 v-if="user === null">{{ message }}</h1>
+    <h1 v-if="!isAuthenticated">{{ message }}</h1>
     <div v-else>
       <form action="ConversationsPage.vue" method="post">
         <label for="to">À :</label>
