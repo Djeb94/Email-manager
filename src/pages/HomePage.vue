@@ -5,16 +5,16 @@
     <div v-else>
       <button id="writeemail" @click="toggleForm">{{ buttonLabel }}</button>
       <form v-if="showForm" @submit.prevent="submitForm" action="ConversationsPage.vue" method="post">
-        <label for="to">À :</label>
-        <input type="email" id="to" name="to" required placeholder="Destinataire">
+        <label for="to">To :</label>
+        <input type="email" id="to" name="to" required placeholder="Recipient">
 
-        <label for="subject">Sujet :</label>
-        <input type="text" id="subject" name="subject" required placeholder="Objet">
+        <label for="subject">Subjet :</label>
+        <input type="text" id="subject" name="subject" required placeholder="Subject line">
 
         <label for="message">Message :</label>
-        <textarea id="message" name="message" rows="5" required placeholder="Votre message"></textarea>
+        <textarea id="message" name="message" rows="5" required placeholder="Your message"></textarea>
 
-        <button id="send">Envoyer</button>
+        <button id="send">Send your message</button>
       </form>
     </div>
   </div>
