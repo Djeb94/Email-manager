@@ -66,6 +66,7 @@ export default {
 
 .sign-out {
   background-color: #dc3545;
+  margin-top: 0px;
 }
 
 .auth-button:hover {

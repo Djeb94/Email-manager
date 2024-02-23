@@ -4,17 +4,17 @@
     <p v-if="!isAuthenticated">{{ auth }}</p>
     <div v-else>
       <button id="writeemail" @click="toggleForm">{{ buttonLabel }}</button>
-      <form v-if="showForm" @submit.prevent="submitForm" action="ConversationsPage.vue" method="post">
-        <label for="to">À :</label>
-        <input type="email" id="to" name="to" required placeholder="Destinataire">
+      <form v-if="showForm" @submit.prevent="submitForm">
+        <label for="to">To :</label>
+        <input v-model="email.to" type="email" id="to" name="to" required placeholder="Recipient">
 
-        <label for="subject">Sujet :</label>
-        <input type="text" id="subject" name="subject" required placeholder="Objet">
+        <label for="subject">Subjet :</label>
+        <input v-model="email.subject" type="text" id="subject" name="subject" required placeholder="Subject line">
 
         <label for="message">Message :</label>
-        <textarea id="message" name="message" rows="5" required placeholder="Votre message"></textarea>
+        <textarea v-model="email.message" id="message" name="message" rows="5" required placeholder="Your message"></textarea>
 
-        <button id="send">Envoyer</button>
+        <button type="submit">Send your message</button>
       </form>
     </div>
   </div>
@@ -27,7 +27,12 @@ export default {
   name: "HomePage",
   data() {
     return {
-      showForm: false
+      showForm: false,
+      email: {
+        to: '',
+        subject: '',
+        message: ''
+      }
     };
   },
   computed: {
@@ -47,12 +52,43 @@ export default {
     toggleForm() {
       this.showForm = !this.showForm;
     },
+    submitForm() {
+      // Récupérer les données de l'e-mail
+      const { to, subject, message } = this.email;
+
+      // Créer un objet JSON avec les données de l'e-mail
+      const emailData = {
+        to,
+        subject,
+        message
+      };
+
+      // Récupérer les données actuelles du stockage local (s'il y en a) ou initialiser un tableau vide
+      let emails = JSON.parse(localStorage.getItem('emails')) || [];
+
+      // Ajouter les données de l'e-mail au tableau
+      emails.push(emailData);
+
+      // Enregistrer les données dans le stockage local
+      localStorage.setItem('emails', JSON.stringify(emails));
+
+      // Effacer les champs du formulaire après l'envoi
+      this.email = {
+        to: '',
+        subject: '',
+        message: ''
+      };
+    }
   }
 }
 </script>
 
 <style>
-div h1 {
+.content {
+  text-align: center;
+}
+
+h1 {
   margin-top: 100px;
 }
 
@@ -78,23 +114,21 @@ textarea {
   padding: 10px;
 }
 
-#send {
+button {
   padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
   border: none;
   cursor: pointer;
   border-radius: 20px;
-  float: right;
-  margin-right: 35px;
   margin-top: 20px;
-  margin-bottom: 20px;
 }
 
-#send:hover {
+button:hover {
   background-color: #0056b3;
 }
-#writeemail{
+
+#writeemail {
   background-color: #0056b3;
   color: white;
   border: 0px;
