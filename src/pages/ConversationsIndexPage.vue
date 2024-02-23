@@ -141,5 +141,8 @@ ul{
 #delete{
   background-color: #dc3545;
 }
+#delete:hover{
+  opacity: 0.8;
+}
 
 </style>
