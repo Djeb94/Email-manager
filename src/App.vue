@@ -28,6 +28,8 @@ body{
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100vh;
+  width: 100vw;
 }
 
 #header-nav{
@@ -45,7 +47,6 @@ body{
 }
 #footer-nav{
   width: 100%;
-  position: fixed;
   bottom: 0;
   background-color: #202020;
   display: flex;
@@ -55,5 +56,12 @@ body{
 #footer-nav>*{
   margin: 14px 14px;
   flex-grow: 1;
+}
+.content{
+  min-height: 100%;
+  margin-bottom: -60px;
+}
+#footer-nav, .content:after{
+  height: 60px
 }
 </style>

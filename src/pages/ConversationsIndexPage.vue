@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="content">
       <h1 v-if="isAuthenticated">Conversations</h1>
       <h1 v-else>Vous devez vous connecter pour accéder à cette page.</h1>
       <ul>

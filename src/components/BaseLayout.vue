@@ -1,9 +1,7 @@
 <template>
-    <div>
-        <base-header />
-        <slot />
-        <base-footer />
-    </div>
+  <base-header />
+  <slot />
+  <base-footer />
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="content">
     <h1>{{ welcome }}</h1>
     <p v-if="!isAuthenticated">{{ auth }}</p>
     <div v-else>
