@@ -13,6 +13,7 @@
 import * as microsoftGraph from "../lib/microsoftGraph.js";
 import { mapMutations, mapState } from 'vuex'
 import { googleLogout } from "vue3-google-login";
+import { getUserName } from "../main.js";
 
 export default {
   name: "LogIn",
@@ -28,15 +29,19 @@ export default {
   methods: {
     ...mapMutations(['setUser']),
     callbackGoogle(response) {
-      console.log('Logged in with Google')
-      this.isLoggedIn = true
-      console.log(response)
-      this.userInfo = response.profileObj && response.profileObj.name ? response.profileObj.name : 
-                     response.name ? response.name :
-                     response.profileObj && response.profileObj.email ? response.profileObj.email : 
-                     "Unknown User";
-      this.setUser(this.userInfo);
-    },
+  console.log('Logged in with Google')
+  this.isLoggedIn = true
+  console.log(response)
+  getUserName(response.tokenId)
+    .then(userName => {
+      console.log('User name:', userName);
+      this.userInfo = userName;
+      this.setUser(userName);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+},
     async signInMicrosoft() {
       try {
         const user = await microsoftGraph.signInAndGetUser();
