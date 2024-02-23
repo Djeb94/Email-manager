@@ -37,7 +37,7 @@ export default {
       const maxLength = 50;
       return this.selectedEmail && this.selectedEmail.message.length > maxLength;
     },
-    emailCount() { // La propriété emailCount doit être incluse dans la section computed
+    emailCount() { 
       return this.emails.length;
     }
   },
@@ -53,11 +53,11 @@ export default {
     deleteEmail(email) {
   const index = this.emails.findIndex(e => e.id === email.id);
   if (index !== -1) {
-    this.emails.splice(index, 1); // Supprimer l'e-mail du tableau
-    localStorage.setItem('emails', JSON.stringify(this.emails)); // Mettre à jour le stockage local
-    this.selectedEmail = null; // Réinitialiser l'e-mail sélectionné
+    this.emails.splice(index, 1); 
+    localStorage.setItem('emails', JSON.stringify(this.emails)); 
+    this.selectedEmail = null; 
 
-    // Mettre à jour le nombre d'e-mails
+    
     this.$nextTick(() => {
       this.emailCount = this.emails.length;
     });
