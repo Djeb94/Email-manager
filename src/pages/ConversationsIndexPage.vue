@@ -2,9 +2,15 @@
   <div class="conversations">
     <h1 v-if="isAuthenticated" class="page-title">Conversations</h1>
     <h1 v-else class="page-title">Vous devez vous connecter pour accéder à cette page.</h1>
+    <div v-if="selectedEmail" class="email-message">
+      <h2>Email Message</h2>
+      <p id="email-content"><strong>To:</strong> {{ selectedEmail.to }}</p>
+      <p id="email-content"><strong>Subject:</strong> {{ selectedEmail.subject }}</p>
+      <p id="email-content"><strong>Message:</strong> {{ selectedEmail.message }}</p>
+    </div>
     <ul v-if="isAuthenticated">
       <li v-for="email in emails" :key="email.id">
-        <router-link :to="`/conversations/${email.id}`">
+        <router-link :to="`/conversations`" @click="selectEmail(email)">
           <div class="email-info">
             <p id="email-content"><strong>To:</strong> {{ email.to }}</p>
             <p id="email-content"><strong>Subject:</strong> {{ email.subject }}</p>
@@ -12,6 +18,7 @@
         </router-link>
       </li>
     </ul>
+    
   </div>
 </template>
 
@@ -23,6 +30,16 @@ export default {
     ...mapGetters(['isAuthenticated']),
     emails() {
       return JSON.parse(localStorage.getItem('emails')) || [];
+    }
+  },
+  data() {
+    return {
+      selectedEmail: null
+    };
+  },
+  methods: {
+    selectEmail(email) {
+      this.selectedEmail = email;
     }
   }
 }
@@ -87,6 +104,13 @@ ul{
 
 .email-info p{
  padding-right: 30px;
+}
+
+.email-message {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 </style>
