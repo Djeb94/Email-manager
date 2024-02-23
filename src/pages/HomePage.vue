@@ -53,13 +53,10 @@ export default {
       this.showForm = !this.showForm;
     },
     submitForm() {
-      // Récupérer les données de l'e-mail
       const { to, subject, message } = this.email;
 
-      // Récupérer les données actuelles du stockage local (s'il y en a) ou initialiser un tableau vide
       let emails = JSON.parse(localStorage.getItem('emails')) || [];
 
-      // Créer un objet JSON avec les données de l'e-mail
       const emailData = {
         id: emails.length || 0,
         to,
@@ -68,13 +65,10 @@ export default {
         date: new Date()
       };
 
-      // Ajouter les données de l'e-mail au tableau
       emails.push(emailData);
 
-      // Enregistrer les données dans le stockage local
       localStorage.setItem('emails', JSON.stringify(emails));
 
-      // Effacer les champs du formulaire après l'envoi
       this.email = {
         to: '',
         subject: '',

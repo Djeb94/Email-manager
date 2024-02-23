@@ -17,7 +17,7 @@ export default {
   computed: {
     ...mapGetters(['isAuthenticated']),
     emails() {
-      return JSON.parse(localStorage.getItem('emails')) || [];
+      return JSON.parse(localStorage.getItem('emails')) || []
     }
   }
 }

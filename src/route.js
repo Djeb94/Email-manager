@@ -10,11 +10,9 @@ const routes = [
     path: '/conversations',
     component: IndexPage,
     meta: { requiresAuth: true },
-    children: [
-      { path: '', component: IndexPage },
-      { path: ':email.id', component: ConversationContent, props: true }
-    ]
-  }
+    
+  },
+  { path: '/conversations/:id', component: ConversationContent, props: true }
 ]
 
 const router = createRouter({

@@ -1,7 +1,7 @@
 <template>
     <div>
       <button @click="$router.go(-1)">Retour</button>
-      <h1>Conversation {{ $route.params.id }}</h1>
+      <h1>Conversation {{ getId }}</h1>
       <p>{{ conversationContent }}</p>
     </div>
   </template>
@@ -9,6 +9,8 @@
   <script>
   export default {
     name: "ConversationContent",
+    props: 
+    {id: (route) => ({ id: route.params.id })},
     data() {
       return {
         conversations: [
@@ -20,7 +22,16 @@
     },
     computed: {
       conversationContent() {
-        const emails = JSON.parse(localStorage.getItem("emails")) 
+        const emails = JSON.parse(localStorage.getItem("emails"));
+        for (let email of emails) {
+          if (this.$route.params.id == email.id) {
+          return email.message
+        }
+        }
+        return "Empty message"
+      },
+      getId() {
+        return this.$route.params.id
       }
     }
   }
