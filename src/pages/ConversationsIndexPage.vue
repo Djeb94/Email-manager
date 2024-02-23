@@ -2,20 +2,24 @@
   <div class="conversations">
     <h1 v-if="isAuthenticated" class="page-title">Conversations</h1>
     <h1 v-else class="page-title">Vous devez vous connecter pour accéder à cette page.</h1>
-    <div v-if="selectedEmail" class="email-message"> <h2>Email Message</h2> <p><strong>To:</strong> {{ selectedEmail.to }}</p> 
-      <p><strong>Subject:</strong> {{ selectedEmail.subject }}</p> 
-      <p class="wrap"><strong>Message:</strong> {{ selectedEmail.message }}</p> </div> 
+    <div v-if="selectedEmail" class="email-message">
+      <h2>Email Message</h2>
+      <p class="email-content"><strong>To:</strong> {{ selectedEmail.to }}</p>
+      <p class="email-content"><strong>Subject:</strong> {{ selectedEmail.subject }}</p>
+      <p :class="{ 'wrap': shouldWrapMessage }" class="email-content"><strong>Message:</strong> {{ selectedEmail.message }}</p>
+      <button id="delete" @click="deleteEmail(selectedEmail)">Delete your message</button>
+    </div>
     <ul v-if="isAuthenticated">
       <li v-for="email in emails" :key="email.id">
         <router-link :to="`/conversations`" @click="selectEmail(email)">
           <div class="email-info">
-            <p id="email-content"><strong>To:</strong> {{ email.to }}</p>
-            <p id="email-content"><strong>Subject:</strong> {{ email.subject }}</p>
+            <p class="email-content"><strong>To:</strong> {{ email.to }}</p>
+            <p class="email-content"><strong>Subject:</strong> {{ email.subject }}</p>
+            
           </div>
         </router-link>
       </li>
     </ul>
-    
   </div>
 </template>
 
@@ -27,6 +31,10 @@ export default {
     ...mapGetters(['isAuthenticated']),
     emails() {
       return JSON.parse(localStorage.getItem('emails')) || [];
+    },
+    shouldWrapMessage() {
+      const maxLength = 50;
+      return this.selectedEmail && this.selectedEmail.message.length > maxLength;
     }
   },
   data() {
@@ -37,6 +45,18 @@ export default {
   methods: {
     selectEmail(email) {
       this.selectedEmail = email;
+    },
+    deleteEmail(email) {
+      // Trouver l'index de l'email dans le tableau des emails
+      const index = this.emails.findIndex(e => e.id === email.id);
+      if (index !== -1) {
+        // Supprimer l'email du tableau
+        this.emails.splice(index, 1);
+        // Mettre à jour le stockage local avec les nouvelles données
+        localStorage.setItem('emails', JSON.stringify(this.emails));
+        // Réinitialiser l'email sélectionné
+        this.selectedEmail = null;
+      }
     }
   }
 }
@@ -96,8 +116,11 @@ ul{
   margin-right: 10px;
   text-decoration: none;
   color: black;
- 
   word-wrap: break-word;
+}
+
+.email-content {
+ padding-left: 25px;
 }
 
 .email-info p { 
@@ -114,6 +137,9 @@ ul{
 .wrap{
   white-space: pre-wrap;
   word-wrap: break-word;
+}
+#delete{
+  background-color: #dc3545;
 }
 
 </style>
