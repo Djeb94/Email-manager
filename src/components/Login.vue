@@ -41,7 +41,7 @@ export default {
       try {
         const user = await microsoftGraph.signInAndGetUser();
         this.isLoggedIn = true;
-        this.userInfo = user.account.name; // Récupération du nom de l'utilisateur Microsoft
+        this.userInfo = user.account.name; 
         this.setUser(this.userInfo);
       } catch (error) {
         console.error(error);
