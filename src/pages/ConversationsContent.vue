@@ -1,27 +1,34 @@
 <template>
-    <div>
-      <button @click="$router.go(-1)">Retour</button>
-      <h1>Conversation {{ $route.params.id }}</h1>
-      <p>{{ conversationContent }}</p>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    name: "ConversationContent",
-    data() {
-      return {
-        conversations: [
-          { id: 1, title: 'Conversation 1', content: 'Content of conversation 1' },
-          { id: 2, title: 'Conversation 2', content: 'Content of conversation 2' },
-          { id: 3, title: 'Conversation 3', content: 'Content of conversation 3' },
-        ]
-      }
-    },
-    computed: {
-      conversationContent() {
-       return "yes"
-      }
+  salut
+  <div class="conversations-content">
+    <button @click="$router.go(-1)">Retour</button>
+    <h1>Email Message</h1>
+    <p>{{ emailMessage }}</p>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "ConversationsContent",
+  props: ['emailId'],
+  computed: {
+    emailMessage() {
+      // Récupérer les e-mails à partir de localStorage
+      const emails = JSON.parse(localStorage.getItem('emails')) || [];
+      // Recherchez l'e-mail correspondant à l'ID fourni
+      const email = emails.find(email => email.id == this.emailId);
+      // Retourne le contenu de l'e-mail s'il est trouvé
+      return email ? email.message : 'Email not found';
     }
   }
-  </script>
+}
+</script>
+
+<style>
+.conversations-content {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+</style>
