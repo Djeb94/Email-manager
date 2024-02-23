@@ -3,7 +3,7 @@
     <h1>{{ welcome }}</h1>
     <p v-if="!isAuthenticated">{{ auth }}</p>
     <div v-else>
-      <button @click="toggleForm">{{ buttonLabel }}</button>
+      <button id="writeemail" @click="toggleForm">{{ buttonLabel }}</button>
       <form v-if="showForm" @submit.prevent="submitForm" action="ConversationsPage.vue" method="post">
         <label for="to">À :</label>
         <input type="email" id="to" name="to" required placeholder="Destinataire">
@@ -39,7 +39,7 @@ export default {
       return 'Please log in your account to access conversations'
     },
     buttonLabel() {
-      return this.showForm ? 'Return' : 'Write a mail';
+      return this.showForm ? 'Return' : 'Write a mail \u{1F582}';
     },
     ...mapState(['user'])
   },
@@ -93,4 +93,12 @@ textarea {
 
 #send:hover {
   background-color: #0056b3;
-}</style>
+}
+#writeemail{
+  background-color: #0056b3;
+  color: white;
+  border: 0px;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+</style>

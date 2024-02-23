@@ -1,8 +1,10 @@
 <template>
   <header class="base-header">
     <nav class="header-nav">
+      <div class="nav">
       <router-link to="/" class="nav-link">Home</router-link>
-      <router-link to="/conversations" class="nav-link">Conversations</router-link>
+      <router-link to="/conversations" class="nav-link" id="Conv">Conversations</router-link>
+    </div>
       <Login/>
     </nav>
   </header>
@@ -37,6 +39,7 @@ export default {
   font-size: 1rem;
   text-decoration: none;
   transition: color 0.3s ease;
+  margin-left: 80px;
 }
 
 .nav-link:hover {
