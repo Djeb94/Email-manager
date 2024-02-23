@@ -1,6 +1,6 @@
 <template>
   <div class="conversations">
-    <h1 v-if="isAuthenticated" class="page-title">Conversations</h1>
+    <h1 v-if="isAuthenticated" class="page-title">Conversations ({{ emailCount }})</h1>
     <h1 v-else class="page-title">Vous devez vous connecter pour accéder à cette page.</h1>
     <div v-if="selectedEmail" class="email-message">
       <h2>Email Message</h2>
@@ -23,6 +23,7 @@
   </div>
 </template>
 
+
 <script>
 import { mapGetters } from 'vuex'
 
@@ -35,6 +36,9 @@ export default {
     shouldWrapMessage() {
       const maxLength = 50;
       return this.selectedEmail && this.selectedEmail.message.length > maxLength;
+    },
+    emailCount() { // La propriété emailCount doit être incluse dans la section computed
+      return this.emails.length;
     }
   },
   data() {
@@ -47,17 +51,18 @@ export default {
       this.selectedEmail = email;
     },
     deleteEmail(email) {
-      // Trouver l'index de l'email dans le tableau des emails
-      const index = this.emails.findIndex(e => e.id === email.id);
-      if (index !== -1) {
-        // Supprimer l'email du tableau
-        this.emails.splice(index, 1);
-        // Mettre à jour le stockage local avec les nouvelles données
-        localStorage.setItem('emails', JSON.stringify(this.emails));
-        // Réinitialiser l'email sélectionné
-        this.selectedEmail = null;
-      }
-    }
+  const index = this.emails.findIndex(e => e.id === email.id);
+  if (index !== -1) {
+    this.emails.splice(index, 1); // Supprimer l'e-mail du tableau
+    localStorage.setItem('emails', JSON.stringify(this.emails)); // Mettre à jour le stockage local
+    this.selectedEmail = null; // Réinitialiser l'e-mail sélectionné
+
+    // Mettre à jour le nombre d'e-mails
+    this.$nextTick(() => {
+      this.emailCount = this.emails.length;
+    });
+  }
+}
   }
 }
 </script>
