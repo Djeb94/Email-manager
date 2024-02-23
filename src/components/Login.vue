@@ -3,7 +3,7 @@
     <button v-if="user === null" @click="signIn" class="auth-button microsoft">Sign in with Microsoft</button>
     <button v-if="user === null" @click="signInG" class="auth-button google">Sign in with Google</button>
     <button v-else @click="signOut" class="auth-button sign-out">Sign out</button>
-    <p v-if="user !== null" class="welcome-text">Welcome, {{ user }}</p>
+    <p v-if="user !== null" class="welcome-text">{{ user }}</p>
   </div>
 </template>
 
