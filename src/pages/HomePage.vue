@@ -4,7 +4,7 @@
     <p v-if="!isAuthenticated">{{ auth }}</p>
     <div v-else>
       <button id="writeemail" @click="toggleForm">{{ buttonLabel }}</button>
-      <form v-if="showForm" @submit.prevent="submitForm">
+      <form v-if="showForm" @submit.prevent="submitForm" action="./pages/ConversationsIndexPage.vue">
         <label for="to">To :</label>
         <input v-model="email.to" type="email" id="to" name="to" required placeholder="Recipient">
 
@@ -58,7 +58,6 @@ export default {
 
       // Récupérer les données actuelles du stockage local (s'il y en a) ou initialiser un tableau vide
       let emails = JSON.parse(localStorage.getItem('emails')) || [];
-
       // Créer un objet JSON avec les données de l'e-mail
       const emailData = {
         id: emails.length || 0,

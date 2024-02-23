@@ -2,12 +2,9 @@
   <div class="conversations">
     <h1 v-if="isAuthenticated" class="page-title">Conversations</h1>
     <h1 v-else class="page-title">Vous devez vous connecter pour accéder à cette page.</h1>
-    <div v-if="selectedEmail" class="email-message">
-      <h2>Email Message</h2>
-      <p id="email-content"><strong>To:</strong> {{ selectedEmail.to }}</p>
-      <p id="email-content"><strong>Subject:</strong> {{ selectedEmail.subject }}</p>
-      <p id="email-content"><strong>Message:</strong> {{ selectedEmail.message }}</p>
-    </div>
+    <div v-if="selectedEmail" class="email-message"> <h2>Email Message</h2> <p><strong>To:</strong> {{ selectedEmail.to }}</p> 
+      <p><strong>Subject:</strong> {{ selectedEmail.subject }}</p> 
+      <p class="wrap"><strong>Message:</strong> {{ selectedEmail.message }}</p> </div> 
     <ul v-if="isAuthenticated">
       <li v-for="email in emails" :key="email.id">
         <router-link :to="`/conversations`" @click="selectEmail(email)">
@@ -100,17 +97,23 @@ ul{
   text-decoration: none;
   color: black;
  
+  word-wrap: break-word;
 }
 
-.email-info p{
- padding-right: 30px;
+.email-info p { 
+  padding-right: 30px; 
+  word-wrap: break-word; 
 }
-
-.email-message {
-  margin-top: 20px;
+ .email-message { 
+  margin-top: 20px; 
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+   border: 1px solid #ccc;
+    border-radius: 5px;
+     word-wrap: break-word;
+    }
+.wrap{
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 </style>
