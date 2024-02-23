@@ -56,15 +56,17 @@ export default {
       // Récupérer les données de l'e-mail
       const { to, subject, message } = this.email;
 
-      // Créer un objet JSON avec les données de l'e-mail
-      const emailData = {
-        to,
-        subject,
-        message
-      };
-
       // Récupérer les données actuelles du stockage local (s'il y en a) ou initialiser un tableau vide
       let emails = JSON.parse(localStorage.getItem('emails')) || [];
+
+      // Créer un objet JSON avec les données de l'e-mail
+      const emailData = {
+        id: emails.length || 0,
+        to,
+        subject,
+        message,
+        date: new Date()
+      };
 
       // Ajouter les données de l'e-mail au tableau
       emails.push(emailData);

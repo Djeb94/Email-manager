@@ -20,7 +20,7 @@
     },
     computed: {
       conversationContent() {
-        return this.conversations.find(conversation => conversation.id === this.$route.params.id)?.content || '';
+        const emails = JSON.parse(localStorage.getItem("emails")) 
       }
     }
   }

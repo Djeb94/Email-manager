@@ -12,7 +12,7 @@ const routes = [
     meta: { requiresAuth: true },
     children: [
       { path: '', component: IndexPage },
-      { path: ':id', component: ConversationContent, props: true }
+      { path: ':email.id', component: ConversationContent, props: true }
     ]
   }
 ]
