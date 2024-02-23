@@ -3,7 +3,7 @@
     <h1>{{ welcome }}</h1>
     <p v-if="!isAuthenticated">{{ auth }}</p>
     <div v-else>
-      <form action="ConversationsPage.vue" method="post">
+      <form action="/conversations/1" method="post">
         <label for="to">À :</label>
         <input type="email" id="to" name="to" required placeholder="Destinataire">
 
