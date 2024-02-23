@@ -4,7 +4,7 @@ import * as msal from '@azure/msal-browser'
  * List the requested scopes (aka. the requested permissions)
  */
 export const requestedScopes = {
-  scopes: ["Mail.Read", "User.Read"]
+  scopes: ["Mail.Read"]
 }
 
 /**
@@ -52,15 +52,4 @@ export async function signInAndGetUser () {
 export async function signOutUser () {
   const authResult = await msalInstance.logoutPopup(logoutRequest )
   return authResult
-}
-
-export async function getMails () {
-  const accessToken = await msalInstance.acquireTokenSilent({ scopes: requestedScopes.scopes })
-  const response = await fetch(graphConfig.graphMailEndpoint, {
-    headers: {
-      Authorization: `Bearer ${accessToken}`
-    }
-  })
-  const mails = await response.json()
-  return mails
 }

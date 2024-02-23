@@ -3,7 +3,8 @@
     <h1>{{ welcome }}</h1>
     <p v-if="!isAuthenticated">{{ auth }}</p>
     <div v-else>
-      <form action="/conversations/1" method="post">
+      <button @click="toggleForm">{{ buttonLabel }}</button>
+      <form v-if="showForm" @submit.prevent="submitForm" action="ConversationsPage.vue" method="post">
         <label for="to">À :</label>
         <input type="email" id="to" name="to" required placeholder="Destinataire">
 
@@ -24,6 +25,11 @@ import { mapGetters, mapState } from 'vuex'
 
 export default {
   name: "HomePage",
+  data() {
+    return {
+      showForm: false
+    };
+  },
   computed: {
     ...mapGetters(['isAuthenticated']),
     welcome() {
@@ -32,8 +38,16 @@ export default {
     auth() {
       return 'Please log in your account to access conversations'
     },
+    buttonLabel() {
+      return this.showForm ? 'Return' : 'Write a mail';
+    },
     ...mapState(['user'])
   },
+  methods: {
+    toggleForm() {
+      this.showForm = !this.showForm;
+    },
+  }
 }
 </script>
 
