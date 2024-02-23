@@ -3,7 +3,7 @@
     <nav class="header-nav">
       <div class="nav">
       <router-link to="/" class="nav-link">Home</router-link>
-      <router-link to="/conversations" class="nav-link" id="Conv">Conversations</router-link>
+  <router-link v-if="isAuthenticated" to="/conversations" class="nav-link" id="Conv">Conversations</router-link>
     </div>
       <Login/>
     </nav>
@@ -11,14 +11,19 @@
 </template>
 
 <script>
-import Login from './Login.vue'
+import { mapGetters } from 'vuex';
+import Login from './Login.vue';
 
 export default {
   name: 'BaseHeader',
   components: {
     Login,
   },
+  computed: {
+    ...mapGetters(['isAuthenticated'])
+  }
 }
+
 </script>
 
 <style scoped>
