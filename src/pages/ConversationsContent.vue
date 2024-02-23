@@ -20,7 +20,7 @@
     },
     computed: {
       conversationContent() {
-        const emails = JSON.parse(localStorage.getItem("emails")) 
+       return "yes"
       }
     }
   }

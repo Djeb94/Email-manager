@@ -85,4 +85,8 @@ ul{
  
 }
 
+.email-info p{
+ padding-right: 30px;
+}
+
 </style>
